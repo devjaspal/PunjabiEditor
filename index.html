@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Punjabi Typing Editor (ਗੁਰਮੁਖੀ)</title>
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Gurmukhi Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gurmukhi&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      padding: 30px;
+      background-color: #f2f2f2;
+      font-family: 'Noto Sans Gurmukhi', sans-serif;
+    }
+    textarea {
+      font-size: 1.2rem;
+      font-family: 'Noto Sans Gurmukhi', sans-serif;
+      resize: vertical;
+    }
+    .btn-group {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2 class="mb-4 text-center">Punjabi Typing Editor (ਗੁਰਮੁਖੀ)</h2>
+
+    <textarea id="punjabiText" rows="10" class="form-control" placeholder="ਇੱਥੇ ਪੰਜਾਬੀ ਲਿਖੋ..."></textarea>
+
+    <div class="btn-group mt-3">
+      <button class="btn btn-primary" onclick="copyText()">📋 Copy</button>
+      <button class="btn btn-danger" onclick="clearText()">🗑️ Clear</button>
+      <button class="btn btn-success" onclick="downloadText()">⬇️ Download .txt</button>
+    </div>
+  </div>
+
+  <script>
+    function copyText() {
+      const textArea = document.getElementById("punjabiText");
+      textArea.select();
+      document.execCommand("copy");
+      alert("Text copied to clipboard!");
+    }
+
+    function clearText() {
+      document.getElementById("punjabiText").value = "";
+    }
+
+    function downloadText() {
+      const text = document.getElementById("punjabiText").value;
+      const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "punjabi-text.txt";
+      link.click();
+    }
+  </script>
+
+</body>
+</html>
